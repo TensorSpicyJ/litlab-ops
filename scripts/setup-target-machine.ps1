@@ -124,6 +124,10 @@ $settingsJson = @"
   "permissions": {
     "defaultMode": "bypassPermissions",
     "skipDangerousModePermissionPrompt": true
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "powershell -NoProfile -Command \"& 'D:\\\\playground\\\\litlab-ops\\\\scripts\\\\deepseek-balance.ps1'\""
   }
 }
 "@
