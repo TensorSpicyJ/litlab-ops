@@ -23,6 +23,6 @@ statusLine 配置（部署脚本已自动写入，这里只是手动参考）：
 ```json
 "statusLine": {
   "type": "command",
-  "command": "powershell -NoProfile -File D:\\playground\\litlab-ops\\scripts\\deepseek-balance.ps1"
+  "command": "powershell -NoProfile -Command \"& 'D:\\playground\\litlab-ops\\scripts\\deepseek-balance.ps1'\""
 }
 ```
