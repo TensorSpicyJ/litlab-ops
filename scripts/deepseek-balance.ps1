@@ -5,6 +5,8 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 $raw = [Console]::In.ReadToEnd().Trim()
 if ($raw) { $data = $raw | ConvertFrom-Json }
 
+$cwd = $data.workspace.current_dir
+
 # ANSI escapes
 $e = [char]27
 $cyan   = "$e[36m"; $green = "$e[32m"; $yellow = "$e[33m"
@@ -78,4 +80,4 @@ if (-not $bal) {
 }
 $parts += "DS:$([char]0xA5)$bal"
 
-Write-Output ($parts -join "  ")
+Write-Output "${cwd}`n$($parts -join "  ")"
