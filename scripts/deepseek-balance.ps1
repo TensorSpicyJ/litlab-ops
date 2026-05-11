@@ -1,12 +1,16 @@
 $ErrorActionPreference = "SilentlyContinue"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
-$out = @()
-
+# Line 1: working directory
 $raw = ($input | Out-String).Trim()
 if ($raw) { $data = $raw | ConvertFrom-Json }
 
-$model = if ($data.model.display_name) { $data.model.display_name } else { "deepseek" }
+$cwd = $data.workspace.current_dir
+
+# Line 2: model + effort + context + balance
+$out = @()
+
+$model = if ($data.model.display_name) { $data.model.display_name } else { "deepseek-v4-pro" }
 $effort = $env:CLAUDE_CODE_EFFORT_LEVEL
 $out += "${model} [${effort}]"
 
@@ -46,4 +50,4 @@ if (-not $val) {
 }
 $out += "DS:$([char]0xA5)${val}"
 
-Write-Output ($out -join "  ")
+Write-Output "${cwd}`n$($out -join "  ")"
